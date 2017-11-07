@@ -1,31 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="/css/app.css">
-    <title></title>
-  </head>
-  <body>
-    <header>
-      <nav>
-        <ul>
-          <li>Inicio</li>
+@extends("layouts.masterPage")
+
+@section("title")
+  Listado de géneros
+@endsection
+
+@section("principal")
+      <h1>Mis peliculas</h1>
+      <ul>
+
+        @forelse ($generos as $key => $genero)
           <li>
-              <a href="peliculas">Peliculas</a>
+            <a href="/genero/{{$key}}">
+              {{$genero}}
+            </a>
           </li>
-          <li>Generos</li>
-        </ul>
-      </nav>
-    </header>
-    <h1>Mis peliculas</h1>
-    <ul>
-      <?php foreach ($generos as $key => $genero) : ?>
-        <li>
-          <a href="/genero/<?=$key?>">
-            <?=$genero?>
-          </a>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-  </body>
-</html>
+        @empty
+            <p>No hay géneros</p>
+        @endforelse
+      </ul>
+@endsection

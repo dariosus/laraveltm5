@@ -24,6 +24,8 @@ Route::post("bienvenidos", function() {
   echo "Bienvenidos a mi sitio";
 });
 
+Route::get("buscarPelicula/{buscar}", "PeliculasController@buscar");
+
 Route::get("/generos", "GenerosController@listar");
 
 Route::get("/peliculas", "PeliculasController@listar");
