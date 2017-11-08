@@ -8,10 +8,10 @@
       <h1>Mis peliculas</h1>
       <ul>
 
-        @forelse ($generos as $key => $genero)
+        @forelse ($generos as $genero)
           <li>
-            <a href="/genero/{{$key}}">
-              {{$genero}}
+            <a href="/genero/{{$genero->id}}">
+              {{$genero->name}}
             </a>
           </li>
         @empty

@@ -8,8 +8,5 @@ class Pelicula extends Model
 {
     protected $table = "movies";
     //protected $primaryKey = "idPelicula";
-    //protected $timestamps = false;
-
-    //protected $fillable = ["id", "title"];
     protected $guarded = [];
 }

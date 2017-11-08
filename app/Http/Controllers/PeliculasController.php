@@ -4,36 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Pelicula;
+
 class PeliculasController extends Controller
 {
+    public function mejores() {
+      $peliculas = Pelicula::orderBy("rating", "DESC")->take(5)->where("awards", ">", 2)->get();
+
+      $variablesACompartir = compact("peliculas");
+
+      return view("peliculas", $variablesACompartir);
+
+    }
+
     public function buscar($buscar) {
-      $peliculas = [
-        "Toy Story",
-        "Toy Story 2",
-        "Buscando a Nemo",
-        "Ratatouille"
-      ];
+      $peliculas = Pelicula::where("title", "LIKE", "%$buscar%")->get();
+      $VAC = compact("peliculas");
 
-      $peliFinal = "No Existe";
-
-      foreach ($peliculas as $pelicula) {
-        if ($pelicula == $buscar) {
-          $peliFinal = $pelicula;
-        }
-      }
-
-      $VAC = compact("peliFinal");
-
-      return view("detallePelicula", $VAC);
+      return view("peliculas", $VAC);
     }
 
     public function listar() {
-      $peliculas = [
-        "Toy Story",
-        "Toy Story 2",
-        "Buscando a Nemo",
-        "Ratatouille"
-      ];
+      $peliculas = Pelicula::all();
 
       $variablesACompartir = compact("peliculas");
 
@@ -41,14 +33,7 @@ class PeliculasController extends Controller
     }
 
     public function detalle($id) {
-      $peliculas = [
-        "Toy Story",
-        "Toy Story 2",
-        "Buscando a Nemo",
-        "Ratatouille"
-      ];
-
-      $peliFinal = $peliculas[$id];
+      $peliFinal = Pelicula::find($id);
 
       $varACompartir = compact("peliFinal");
 

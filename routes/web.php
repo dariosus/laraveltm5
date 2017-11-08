@@ -24,7 +24,11 @@ Route::post("bienvenidos", function() {
   echo "Bienvenidos a mi sitio";
 });
 
+Route::get("/mejoresPeliculas", "PeliculasController@mejores");
+
 Route::get("buscarPelicula/{buscar}", "PeliculasController@buscar");
+
+Route::get("/actores", "ActoresController@listar");
 
 Route::get("/generos", "GenerosController@listar");
 
