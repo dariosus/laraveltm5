@@ -24,6 +24,10 @@ Route::post("bienvenidos", function() {
   echo "Bienvenidos a mi sitio";
 });
 
+Route::get("/agregarPelicula", "PeliculasController@agregar");
+
+Route::post("/agregarPelicula", "PeliculasController@guardar");
+
 Route::get("/mejoresPeliculas", "PeliculasController@mejores");
 
 Route::get("buscarPelicula/{buscar}", "PeliculasController@buscar");

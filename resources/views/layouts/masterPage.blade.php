@@ -20,6 +20,8 @@
         </ul>
       </nav>
     </header>
-    @yield("principal")
+    <section class="container">
+      @yield("principal")
+    </section>
   </body>
 </html>
