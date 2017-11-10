@@ -24,6 +24,8 @@ Route::post("bienvenidos", function() {
   echo "Bienvenidos a mi sitio";
 });
 
+Route::get("/borrarPelicula/{id}", "PeliculasController@borrar");
+
 Route::get("/agregarPelicula", "PeliculasController@agregar");
 
 Route::post("/agregarPelicula", "PeliculasController@guardar");

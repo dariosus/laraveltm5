@@ -9,6 +9,14 @@ use App\Genero;
 
 class PeliculasController extends Controller
 {
+    public function borrar($id) {
+      $pelicula = Pelicula::find($id);
+
+      $pelicula->delete();
+
+      return redirect("/peliculas");
+    }
+
     public function guardar(Request $r) {
 
       //VALIDAR
@@ -33,6 +41,18 @@ class PeliculasController extends Controller
       ];
 
       $this->validate($r, $reglas, $mensajes);
+
+      $pelicula = new Pelicula();
+      $pelicula->title = $r->input("titulo");
+      $pelicula->release_date = $r->input("fecha_de_estreno");
+      $pelicula->awards = $r->input("premios");
+      $pelicula->length = $r->input("duracion");
+      $pelicula->rating = $r->input("rating");
+      $pelicula->genre_id = $r->input("genero");
+
+      $pelicula->save();
+
+      //Pelicula::create($r->all());
 
       return redirect("/peliculas");
     }

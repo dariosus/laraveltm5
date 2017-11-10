@@ -1,7 +1,7 @@
 @extends("layouts.masterPage")
 
 @section("title")
-  {{$peliFinal}}
+  {{$peliFinal->title}}
 @endsection
 
 @section("principal")
@@ -10,4 +10,7 @@
       <li>Premios: {{$peliFinal->awards}}</li>
       <li>Fecha de estreno: {{$peliFinal->release_date}}</li>
     </ul>
+    <a href="/borrarPelicula/{{$peliFinal->id}}">
+      <button type="button" class="btn btn-danger" name="button">Borrar</button>
+    </a>
 @endsection
