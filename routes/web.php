@@ -24,11 +24,11 @@ Route::post("bienvenidos", function() {
   echo "Bienvenidos a mi sitio";
 });
 
-Route::get("/borrarPelicula/{id}", "PeliculasController@borrar");
+Route::get("/borrarPelicula/{id}", "PeliculasController@borrar")->middleware("auth");
 
-Route::get("/agregarPelicula", "PeliculasController@agregar");
+Route::get("/agregarPelicula", "PeliculasController@agregar")->middleware("auth")->middleware("saludar");
 
-Route::post("/agregarPelicula", "PeliculasController@guardar");
+Route::post("/agregarPelicula", "PeliculasController@guardar")->middleware("auth");
 
 Route::get("/mejoresPeliculas", "PeliculasController@mejores");
 
@@ -38,7 +38,7 @@ Route::get("/actores", "ActoresController@listar");
 
 Route::get("/generos", "GenerosController@listar");
 
-Route::get("/peliculas", "PeliculasController@listar");
+Route::get("/peliculas", "PeliculasController@listar")->middleware("saludar");
 
 Route::get("/pelicula/{id}", "PeliculasController@detalle");
 
@@ -49,3 +49,8 @@ Route::get("detallePelicula/{id}", function($id) {
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+
+Route::get('/home', 'HomeController@index')->name('home');

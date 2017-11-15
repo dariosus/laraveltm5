@@ -17,6 +17,18 @@
               <a href="/peliculas">Peliculas</a>
           </li>
           <li><a href="/generos">Generos</a></li>
+          @if (isset($usuario) && $usuario)
+            <li>
+              Bienvenido {{$usuario->name}}
+            </li>
+          @else
+            <li>
+              <a href="/login">Login</a>
+            </li>
+            <li>
+              <a href="/register">Register</a>
+            </li>
+          @endif
         </ul>
       </nav>
     </header>

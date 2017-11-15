@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Pelicula;
 use App\Genero;
+use Auth;
 
 class PeliculasController extends Controller
 {
@@ -58,6 +59,10 @@ class PeliculasController extends Controller
     }
 
     public function agregar() {
+      if (!Auth::check()) {
+        return redirect("/login");
+      }
+
       $generos = Genero::all();
 
       $VAC = compact("generos");
@@ -84,7 +89,9 @@ class PeliculasController extends Controller
     public function listar() {
       $peliculas = Pelicula::all();
 
-      $variablesACompartir = compact("peliculas");
+      $usuario = Auth::user();
+
+      $variablesACompartir = compact("peliculas", "usuario");
 
       return view("peliculas", $variablesACompartir);
     }
